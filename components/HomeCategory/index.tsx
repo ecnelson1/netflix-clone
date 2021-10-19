@@ -23,6 +23,7 @@ export default function HomeCategory(props: HomeCategoryProps) {
       data={category.movies}
       renderItem={({item}) => ( <Image style={styles.image}  source={{uri: item.poster }}/>) }
       horizontal
+      showsHorizontalScrollIndicator={false}
       />
     </>
   );
