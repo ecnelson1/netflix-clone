@@ -1,16 +1,29 @@
-import React from 'react'
+import React, { useState, } from 'react'
 import { Text, View } from '../components/Themed';
 import { StyleSheet, Image, FlatList, Pressable } from 'react-native';
 import { MaterialIcons, Entypo, AntDesign, Feather, Ionicons, FontAwesome } from '@expo/vector-icons';
 import movie from '../assets/data/movie';
+import EpisodeItem from '../components/EpisodeItem';
+import {Picker} from '@react-native-picker/picker';
 
-const firstEpisode = movie.seasons.items[0].episodes.items[0]
+
+const firstSeason = movie.seasons.items[0]
+const firstEpisode = firstSeason.episodes.items[0]
+
 
 function MovieDetail() {
+    const [currentSeason, setCurrentSeason]= useState(firstSeason)
+    const seasonNames = movie.seasons.items.map(season => season.name)
     return (
         <View>
             <Image source={{ uri: firstEpisode.poster }} style={styles.image}/>
-            <View style={{ padding: 12}}>
+           
+            <FlatList
+            data={currentSeason.episodes.items}
+            renderItem={({item})=> <EpisodeItem episode={item}/>}
+            style={{marginBottom: 100}}
+            ListHeaderComponent={(
+                 <View style={{ padding: 12}}>
             <Text style={styles.title}>{movie.title}</Text>
             <View style={{flexDirection: 'row'}}>
                 <Text style={styles.match}>98% Match</Text>
@@ -51,10 +64,21 @@ function MovieDetail() {
                     <View style={{alignItems: 'center', marginHorizontal: 20,}}>
                         <FontAwesome name="send-o" size={24} color="white"/>
                         <Text style={{ color: 'darkgrey', marginTop: 5, }}>Share</Text>
-                    </View>
-                    
+                    </View> 
                 </View>
+                <Picker
+                    style={{width: 100,}}
+                    selectedValue={currentSeason.name}
+                    onValueChange={(itemValue, itemIndex) =>{
+                        setCurrentSeason(movie.seasons.items[itemIndex])
+                    }}>
+                        {seasonNames.map(seasonName => (
+                            <Picker.Item label={seasonName} value={seasonName} key={seasonName} />
+                        ))}
+                </Picker>
             </View>
+            )}
+            />
         </View>
     )
 }
