@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-netflixclone-dev-132940-authRole",
+      "UnauthRoleArn": "arn:aws:iam::249893056942:role/amplify-netflixclone-dev-132940-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::249893056942:role/amplify-netflixclone-dev-132940-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-netflixclone-dev-132940-deployment",
+      "UnauthRoleName": "amplify-netflixclone-dev-132940-unauthRole",
+      "StackName": "amplify-netflixclone-dev-132940",
+      "StackId": "arn:aws:cloudformation:us-west-2:249893056942:stack/amplify-netflixclone-dev-132940/75b910d0-31e4-11ec-ad68-0651725b670b",
+      "AmplifyAppId": "d2y31pl8clyi0w"
+    },
+    "categories": {
+      "auth": {
+        "netflixclone3f97be5f": {}
+      }
+    }
+  }
+}

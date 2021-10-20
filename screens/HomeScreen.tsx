@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyleSheet, Image, FlatList } from 'react-native';
+import { StyleSheet, Image, FlatList, Pressable } from 'react-native';
 import categories from '../assets/data/categories';
-
+import { Auth } from 'aws-amplify';
 import EditScreenInfo from '../components/EditScreenInfo';
 import HomeCategory from '../components/HomeCategory';
 import { Text, View } from '../components/Themed';
@@ -9,8 +9,16 @@ import { RootTabScreenProps } from '../types';
 
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
+  const onLogout = () => {
+    Auth.signOut();
+  }
   return (
+    
+    
     <View style={styles.container}>
+      <Pressable onPress={onLogout} >
+        <Text style={{color: 'red'}}>Logout</Text>
+      </Pressable >
       <FlatList
       data={categories.items}
       renderItem={({item})=> <HomeCategory category={item}/>}/>
